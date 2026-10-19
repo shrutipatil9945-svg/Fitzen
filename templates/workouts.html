@@ -1,0 +1,363 @@
+{% extends "base.html" %}
+
+{% block title %}Workouts & Routines – Fitzen{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+            <h2 class="fw-bold text-dark mb-1">
+                <i class="bi bi-fire me-2 text-danger"></i> Workouts & Training Routines
+            </h2>
+            <p class="text-muted mb-0">
+                Explore curated workout plans, target specific goals, and track your active exercise minutes.
+            </p>
+        </div>
+    </div>
+
+    <!-- Preset Routines by Goal -->
+    <div class="card card-fitzen p-4 mb-4">
+        <h5 class="fw-bold text-dark mb-3">
+            <i class="bi bi-compass me-2 text-success"></i> Recommended Training Routines
+        </h5>
+        
+        <!-- Tab Navigation for Goals -->
+        <ul class="nav nav-pills nav-pills-fitzen mb-4" id="routineTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="general-tab" data-bs-toggle="pill" data-bs-target="#general-routines" type="button" role="tab">
+                    General Fitness
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="strength-tab" data-bs-toggle="pill" data-bs-target="#strength-routines" type="button" role="tab">
+                    Strength & Muscle Gain
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="weightloss-tab" data-bs-toggle="pill" data-bs-target="#weightloss-routines" type="button" role="tab">
+                    Weight Management & HIIT
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="endurance-tab" data-bs-toggle="pill" data-bs-target="#endurance-routines" type="button" role="tab">
+                    Endurance & Mobility
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="routineTabsContent">
+            <!-- 1. General Fitness -->
+            <div class="tab-pane fade show active" id="general-routines" role="tabpanel">
+                <div class="row g-3">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border routine-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="fw-bold mb-0">Full Body Primer</h6>
+                                    <span class="badge bg-light text-muted border">30 Mins</span>
+                                </div>
+                                <p class="small text-muted mb-3">Bodyweight squats, push-ups, jumping jacks, plank holds, and stretching.</p>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-fitzen-outline btn-preset-workout w-100" data-name="Full Body Primer" data-duration="30" data-goal="General Fitness">
+                                <i class="bi bi-plus-circle me-1"></i> Use Routine
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border routine-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="fw-bold mb-0">Brisk Outdoor Jog</h6>
+                                    <span class="badge bg-light text-muted border">40 Mins</span>
+                                </div>
+                                <p class="small text-muted mb-3">Continuous zone 2 cardio to boost cardiovascular stamina and mood.</p>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-fitzen-outline btn-preset-workout w-100" data-name="Brisk Outdoor Jog" data-duration="40" data-goal="General Fitness">
+                                <i class="bi bi-plus-circle me-1"></i> Use Routine
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border routine-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="fw-bold mb-0">Core & Balance Flow</h6>
+                                    <span class="badge bg-light text-muted border">25 Mins</span>
+                                </div>
+                                <p class="small text-muted mb-3">Bird-dogs, Russian twists, side planks, and balance posture training.</p>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-fitzen-outline btn-preset-workout w-100" data-name="Core & Balance Flow" data-duration="25" data-goal="General Fitness">
+                                <i class="bi bi-plus-circle me-1"></i> Use Routine
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Strength -->
+            <div class="tab-pane fade" id="strength-routines" role="tabpanel">
+                <div class="row g-3">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border routine-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="fw-bold mb-0">Upper Body Hypertrophy</h6>
+                                    <span class="badge bg-light text-muted border">45 Mins</span>
+                                </div>
+                                <p class="small text-muted mb-3">Bench press, dumbbell rows, overhead shoulder press, bicep curls, and tricep dips.</p>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-fitzen-outline btn-preset-workout w-100" data-name="Upper Body Hypertrophy" data-duration="45" data-goal="Muscle Gain">
+                                <i class="bi bi-plus-circle me-1"></i> Use Routine
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border routine-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="fw-bold mb-0">Lower Body Power</h6>
+                                    <span class="badge bg-light text-muted border">50 Mins</span>
+                                </div>
+                                <p class="small text-muted mb-3">Barbell squats, Romanian deadlifts, walking lunges, and calf raises.</p>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-fitzen-outline btn-preset-workout w-100" data-name="Lower Body Power" data-duration="50" data-goal="Muscle Gain">
+                                <i class="bi bi-plus-circle me-1"></i> Use Routine
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border routine-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="fw-bold mb-0">Pull Day Strength</h6>
+                                    <span class="badge bg-light text-muted border">45 Mins</span>
+                                </div>
+                                <p class="small text-muted mb-3">Pull-ups, lat pulldowns, seated cable rows, face-pulls, and hammer curls.</p>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-fitzen-outline btn-preset-workout w-100" data-name="Pull Day Strength" data-duration="45" data-goal="Muscle Gain">
+                                <i class="bi bi-plus-circle me-1"></i> Use Routine
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Weight Loss / HIIT -->
+            <div class="tab-pane fade" id="weightloss-routines" role="tabpanel">
+                <div class="row g-3">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border routine-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="fw-bold mb-0">High-Intensity Interval (HIIT)</h6>
+                                    <span class="badge bg-light text-muted border">30 Mins</span>
+                                </div>
+                                <p class="small text-muted mb-3">Burpees, mountain climbers, kettlebell swings, and sprint intervals with 30s rest.</p>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-fitzen-outline btn-preset-workout w-100" data-name="HIIT Interval Burn" data-duration="30" data-goal="Weight Loss">
+                                <i class="bi bi-plus-circle me-1"></i> Use Routine
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border routine-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="fw-bold mb-0">Rowing & Jump Rope Circuit</h6>
+                                    <span class="badge bg-light text-muted border">35 Mins</span>
+                                </div>
+                                <p class="small text-muted mb-3">Metabolic conditioning circuit focusing on elevated heart rate and caloric expenditure.</p>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-fitzen-outline btn-preset-workout w-100" data-name="Row & Jump Rope Circuit" data-duration="35" data-goal="Weight Loss">
+                                <i class="bi bi-plus-circle me-1"></i> Use Routine
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border routine-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="fw-bold mb-0">Incline Treadmill Walk</h6>
+                                    <span class="badge bg-light text-muted border">45 Mins</span>
+                                </div>
+                                <p class="small text-muted mb-3">Low-impact steady-state (LISS) incline walking at 12% elevation, 4.5 km/h.</p>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-fitzen-outline btn-preset-workout w-100" data-name="Incline Treadmill LISS" data-duration="45" data-goal="Weight Loss">
+                                <i class="bi bi-plus-circle me-1"></i> Use Routine
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Endurance -->
+            <div class="tab-pane fade" id="endurance-routines" role="tabpanel">
+                <div class="row g-3">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border routine-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="fw-bold mb-0">Long Distance Cycling</h6>
+                                    <span class="badge bg-light text-muted border">60 Mins</span>
+                                </div>
+                                <p class="small text-muted mb-3">Aerobic conditioning ride sustaining consistent cadence and heart rate pacing.</p>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-fitzen-outline btn-preset-workout w-100" data-name="Long Distance Cycling" data-duration="60" data-goal="Endurance">
+                                <i class="bi bi-plus-circle me-1"></i> Use Routine
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border routine-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="fw-bold mb-0">Vinyasa Yoga & Mobility</h6>
+                                    <span class="badge bg-light text-muted border">40 Mins</span>
+                                </div>
+                                <p class="small text-muted mb-3">Dynamic hip openers, spinal flexion, downward dog transitions, and deep recovery.</p>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-fitzen-outline btn-preset-workout w-100" data-name="Vinyasa Yoga & Mobility" data-duration="40" data-goal="Flexibility">
+                                <i class="bi bi-plus-circle me-1"></i> Use Routine
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border routine-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="fw-bold mb-0">Swimming Laps</h6>
+                                    <span class="badge bg-light text-muted border">45 Mins</span>
+                                </div>
+                                <p class="small text-muted mb-3">Freestyle and breaststroke swimming intervals for zero-impact endurance.</p>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-fitzen-outline btn-preset-workout w-100" data-name="Swimming Laps" data-duration="45" data-goal="Endurance">
+                                <i class="bi bi-plus-circle me-1"></i> Use Routine
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form and Logged Workouts Row -->
+    <div class="row g-4">
+        <!-- Log Workout Form -->
+        <div class="col-lg-5">
+            <div class="card card-fitzen p-4" id="workout-log-form">
+                <h5 class="fw-bold text-dark mb-3">
+                    <i class="bi bi-pencil-square me-2 text-primary"></i> Log Completed Workout
+                </h5>
+                <form action="{{ url_for('workouts') }}" method="POST">
+                    <!-- Workout Name -->
+                    <div class="mb-3">
+                        <label for="workout_name" class="form-label">Workout / Activity Name</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="workout_name" 
+                            name="workout_name" 
+                            placeholder="e.g. Upper Body Hypertrophy" 
+                            required
+                        >
+                    </div>
+
+                    <!-- Category -->
+                    <div class="mb-3">
+                        <label for="goal_category" class="form-label">Category / Goal Focus</label>
+                        <select class="form-select" id="goal_category" name="goal_category" required>
+                            <option value="General Fitness">General Fitness</option>
+                            <option value="Muscle Gain">Muscle Gain & Strength</option>
+                            <option value="Weight Loss">Weight Loss & Cardio</option>
+                            <option value="Endurance">Endurance & Stamina</option>
+                            <option value="Flexibility">Flexibility & Recovery</option>
+                        </select>
+                    </div>
+
+                    <!-- Duration -->
+                    <div class="mb-3">
+                        <label for="duration_mins" class="form-label">Duration (in Minutes)</label>
+                        <div class="input-group">
+                            <input 
+                                type="number" 
+                                min="1" 
+                                max="600" 
+                                class="form-control" 
+                                id="duration_mins" 
+                                name="duration_mins" 
+                                placeholder="e.g. 45" 
+                                required
+                            >
+                            <span class="input-group-text bg-light">minutes</span>
+                        </div>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="mb-4">
+                        <label for="date_logged" class="form-label">Date Completed</label>
+                        <input 
+                            type="date" 
+                            class="form-control" 
+                            id="date_logged" 
+                            name="date_logged"
+                        >
+                    </div>
+
+                    <button type="submit" class="btn btn-fitzen w-100 py-2">
+                        <i class="bi bi-check2-circle me-1"></i> Save Workout to History
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Logged Workouts List -->
+        <div class="col-lg-7">
+            <div class="card card-fitzen h-100">
+                <div class="card-header card-header-fitzen d-flex justify-content-between align-items-center">
+                    <span class="fw-bold"><i class="bi bi-journal-text me-2 text-success"></i> Recorded Workout Logs</span>
+                    <span class="badge bg-light text-muted border">{{ workouts|length }} Sessions</span>
+                </div>
+                <div class="card-body p-0">
+                    {% if workouts %}
+                        <div class="table-responsive">
+                            <table class="table table-fitzen align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Activity Name</th>
+                                        <th>Category</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for w in workouts %}
+                                        <tr>
+                                            <td class="text-muted small">
+                                                <i class="bi bi-calendar-event me-1"></i> {{ w.date_logged }}
+                                            </td>
+                                            <td class="fw-bold text-dark">{{ w.workout_name }}</td>
+                                            <td>
+                                                <span class="badge bg-light text-dark border">{{ w.goal_category }}</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-emerald-subtle text-success fw-bold">{{ w.duration_mins }} mins</span>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5 text-muted">
+                            <i class="bi bi-fire fs-1 opacity-50 mb-2"></i>
+                            <p class="mb-0">No workouts recorded yet. Pick a preset above or log a custom session.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

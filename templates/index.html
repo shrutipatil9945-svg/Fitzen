@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}Fitzen – Transform Your Fitness & Wellness Journey{% endblock %}
+
+{% block content %}
+<!-- ====================================================================
+     HERO SECTION
+     ==================================================================== -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-7">
+                <span class="badge bg-emerald-subtle text-success border border-success-subtle px-3 py-2 rounded-pill fw-semibold mb-3">
+                    <i class="bi bi-stars me-1"></i> Your All-In-One Health Companion
+                </span>
+                <h1 class="hero-title mb-4">
+                    Balance Your Body, Fuel Your Mind with <span>Fitzen</span>.
+                </h1>
+                <p class="hero-subtitle mb-4">
+                    Fitzen delivers precise BMI screening, dynamic workout routine tracking, personalized dietary guidelines, and intuitive calorie management designed for your sustainable lifestyle.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{{ url_for('register') }}" class="btn btn-fitzen btn-lg px-4 py-3">
+                        Start Tracking Free <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                    <a href="{{ url_for('login') }}" class="btn btn-fitzen-outline btn-lg px-4 py-3">
+                        Sign In to Account
+                    </a>
+                </div>
+
+                <!-- Trust indicators -->
+                <div class="row g-3 mt-4 pt-3 border-top">
+                    <div class="col-auto d-flex align-items-center">
+                        <i class="bi bi-shield-check text-success fs-4 me-2"></i>
+                        <span class="small fw-semibold text-muted">Supabase RLS Protected</span>
+                    </div>
+                    <div class="col-auto d-flex align-items-center">
+                        <i class="bi bi-lightning-charge-fill text-warning fs-4 me-2"></i>
+                        <span class="small fw-semibold text-muted">Instant Body Metrics</span>
+                    </div>
+                    <div class="col-auto d-flex align-items-center">
+                        <i class="bi bi-pie-chart-fill text-info fs-4 me-2"></i>
+                        <span class="small fw-semibold text-muted">Daily Nutrition Insights</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Graphic Card -->
+            <div class="col-lg-5">
+                <div class="card card-fitzen shadow-lg p-4 border-0 position-relative">
+                    <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom">
+                        <div>
+                            <span class="text-muted small text-uppercase fw-bold">Live Health Snapshot</span>
+                            <h5 class="fw-bold text-dark mb-0">Daily Wellness Target</h5>
+                        </div>
+                        <span class="badge bg-success-subtle text-success p-2 rounded-pill">
+                            <i class="bi bi-check-circle-fill me-1"></i> Active
+                        </span>
+                    </div>
+
+                    <!-- Mini Metric 1 -->
+                    <div class="d-flex align-items-center justify-content-between p-3 rounded-3 bg-light mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon teal me-3">
+                                <i class="bi bi-calculator"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">BMI Index</h6>
+                                <small class="text-muted">Body Mass Evaluation</small>
+                            </div>
+                        </div>
+                        <span class="badge badge-bmi-normal">21.8 Normal</span>
+                    </div>
+
+                    <!-- Mini Metric 2 -->
+                    <div class="d-flex align-items-center justify-content-between p-3 rounded-3 bg-light mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon primary me-3">
+                                <i class="bi bi-fire"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Daily Calories</h6>
+                                <small class="text-muted">Logged today</small>
+                            </div>
+                        </div>
+                        <span class="fw-bold text-dark">1,850 kcal</span>
+                    </div>
+
+                    <!-- Mini Metric 3 -->
+                    <div class="d-flex align-items-center justify-content-between p-3 rounded-3 bg-light">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon accent me-3">
+                                <i class="bi bi-activity"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Workout Session</h6>
+                                <small class="text-muted">Cardio & Core</small>
+                            </div>
+                        </div>
+                        <span class="badge bg-primary-subtle text-primary">45 Mins</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====================================================================
+     CORE FEATURES SECTION
+     ==================================================================== -->
+<section class="py-5 bg-white">
+    <div class="container py-4">
+        <div class="text-center max-w-700 mx-auto mb-5">
+            <span class="badge bg-emerald-subtle text-success px-3 py-2 rounded-pill fw-semibold">Features</span>
+            <h2 class="fw-bold text-dark mt-2">Everything You Need for Fitness Success</h2>
+            <p class="text-muted">Empowering your personal health journey with clean, scientific, and actionable tools.</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Feature 1 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-box h-100">
+                    <div class="icon-wrap">
+                        <i class="bi bi-speedometer2"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">BMI Screening</h5>
+                    <p class="text-muted small mb-0">
+                        Calculate and monitor your Body Mass Index against WHO scientific standards to understand body weight ranges.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-box h-100">
+                    <div class="icon-wrap">
+                        <i class="bi bi-heart-pulse"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">Workout Routines</h5>
+                    <p class="text-muted small mb-0">
+                        Access preset workouts for Muscle Gain, Weight Loss, or General Fitness, and log your active minutes.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-box h-100">
+                    <div class="icon-wrap">
+                        <i class="bi bi-egg-fried"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">Dietary Guidance</h5>
+                    <p class="text-muted small mb-0">
+                        Explore nutrient-dense meal strategies across Breakfast, Lunch, Dinner, and Snacks tailored to your goals.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-box h-100">
+                    <div class="icon-wrap">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">Progress Analytics</h5>
+                    <p class="text-muted small mb-0">
+                        Visualize calorie intake trends, workout frequency, and BMI changes with interactive Chart.js graphs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====================================================================
+     CALL TO ACTION (CTA)
+     ==================================================================== -->
+<section class="py-5" style="background: linear-gradient(135deg, #064e3b, #065f46);">
+    <div class="container py-4 text-center text-white">
+        <h2 class="fw-bold mb-3">Ready to Take Control of Your Wellness?</h2>
+        <p class="text-light opacity-75 mb-4 max-w-600 mx-auto">
+            Join Fitzen today. Set your goal, log your daily habits, and watch your consistency turn into real, lasting progress.
+        </p>
+        <a href="{{ url_for('register') }}" class="btn btn-light btn-lg text-success fw-bold px-4 py-3 shadow">
+            Create Your Account Now <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block title %}Calorie Tracker – Fitzen{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+            <h2 class="fw-bold text-dark mb-1">
+                <i class="bi bi-pie-chart me-2 text-primary"></i> Calorie Tracker & Food Logging
+            </h2>
+            <p class="text-muted mb-0">
+                Log your nutritional intake, monitor meal categories, and balance daily caloric energy.
+            </p>
+        </div>
+    </div>
+
+    <!-- Top Stats Row -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="stat-label">Today's Intake</span>
+                    <div class="stat-icon primary">
+                        <i class="bi bi-fire"></i>
+                    </div>
+                </div>
+                <div class="stat-value text-success">{{ total_today }} <span class="fs-6 text-muted fw-normal">kcal</span></div>
+                <div class="small text-muted mt-2">
+                    Date: <strong class="text-dark">{{ today_date }}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-8">
+            <div class="stat-card d-flex flex-column justify-content-center h-100">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="stat-icon teal me-3">
+                        <i class="bi bi-info-circle"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-0 text-dark">Calorie Awareness</h6>
+                        <small class="text-muted">General adult maintenance is ~2,000 to 2,500 kcal/day</small>
+                    </div>
+                </div>
+                <p class="small text-muted mb-0">
+                    Track meals right after eating for higher logging accuracy. Combine tracking with adequate protein to maintain lean muscle mass during deficit phases.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Log Food Form -->
+        <div class="col-lg-4">
+            <div class="card card-fitzen p-4 mb-4">
+                <h5 class="fw-bold text-dark mb-3">
+                    <i class="bi bi-plus-circle me-1 text-success"></i> Log Food Item
+                </h5>
+                <form action="{{ url_for('calorie_tracker') }}" method="POST">
+                    <!-- Food Item Name -->
+                    <div class="mb-3">
+                        <label for="food_item" class="form-label">Food / Meal Item</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="food_item" 
+                            name="food_item" 
+                            placeholder="e.g. Oatmeal with Almonds" 
+                            required
+                        >
+                    </div>
+
+                    <!-- Calorie Count -->
+                    <div class="mb-3">
+                        <label for="calories" class="form-label">Estimated Calories (kcal)</label>
+                        <input 
+                            type="number" 
+                            min="1" 
+                            max="5000" 
+                            class="form-control" 
+                            id="calories" 
+                            name="calories" 
+                            placeholder="e.g. 350" 
+                            required
+                        >
+                    </div>
+
+                    <!-- Meal Type -->
+                    <div class="mb-3">
+                        <label for="meal_type" class="form-label">Meal Type</label>
+                        <select class="form-select" id="meal_type" name="meal_type" required>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Dinner">Dinner</option>
+                            <option value="Snacks" selected>Snacks</option>
+                        </select>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="mb-4">
+                        <label for="date_logged" class="form-label">Date</label>
+                        <input 
+                            type="date" 
+                            class="form-control" 
+                            id="date_logged" 
+                            name="date_logged" 
+                            value="{{ today_date }}"
+                        >
+                    </div>
+
+                    <button type="submit" class="btn btn-fitzen w-100 py-2">
+                        <i class="bi bi-check-circle me-1"></i> Add Food Entry
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Food Logs Table -->
+        <div class="col-lg-8">
+            <div class="card card-fitzen">
+                <div class="card-header card-header-fitzen d-flex flex-wrap justify-content-between align-items-center gap-2">
+                    <span class="fw-bold"><i class="bi bi-journal-check me-2 text-primary"></i> Logged Meals</span>
+
+                    <!-- Meal Filter Pills -->
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Meal Filter">
+                        <button type="button" class="btn btn-outline-secondary meal-filter-btn active" data-filter="all">All</button>
+                        <button type="button" class="btn btn-outline-secondary meal-filter-btn" data-filter="Breakfast">Breakfast</button>
+                        <button type="button" class="btn btn-outline-secondary meal-filter-btn" data-filter="Lunch">Lunch</button>
+                        <button type="button" class="btn btn-outline-secondary meal-filter-btn" data-filter="Dinner">Dinner</button>
+                        <button type="button" class="btn btn-outline-secondary meal-filter-btn" data-filter="Snacks">Snacks</button>
+                    </div>
+                </div>
+
+                <div class="card-body p-0">
+                    {% if food_logs %}
+                        <div class="table-responsive">
+                            <table class="table table-fitzen align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Food Item</th>
+                                        <th>Meal Type</th>
+                                        <th>Calories</th>
+                                        <th class="text-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in food_logs %}
+                                        <tr class="food-log-row" data-meal="{{ item.meal_type }}">
+                                            <td class="text-muted small">
+                                                <i class="bi bi-calendar3 me-1"></i> {{ item.date_logged }}
+                                            </td>
+                                            <td class="fw-bold text-dark">{{ item.food_item }}</td>
+                                            <td>
+                                                {% if item.meal_type == 'Breakfast' %}
+                                                    <span class="badge bg-warning-subtle text-dark border">Breakfast</span>
+                                                {% elif item.meal_type == 'Lunch' %}
+                                                    <span class="badge bg-primary-subtle text-primary border">Lunch</span>
+                                                {% elif item.meal_type == 'Dinner' %}
+                                                    <span class="badge bg-info-subtle text-info-emphasis border">Dinner</span>
+                                                {% else %}
+                                                    <span class="badge bg-secondary-subtle text-secondary border">Snacks</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <span class="fw-bold text-dark">{{ item.calories }}</span> <small class="text-muted">kcal</small>
+                                            </td>
+                                            <td class="text-end">
+                                                <form action="{{ url_for('delete_food_log', log_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Remove this food entry?');">
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger border-0 p-1 px-2" title="Delete Entry">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5 text-muted">
+                            <i class="bi bi-egg-fried fs-1 opacity-50 mb-2"></i>
+                            <p class="mb-0">No food items logged yet. Add your first meal using the form.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

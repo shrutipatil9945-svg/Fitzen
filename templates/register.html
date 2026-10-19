@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Create Account – Fitzen{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <!-- Register Card -->
+            <div class="card card-fitzen shadow-lg p-4 p-md-5 border-0">
+                <div class="text-center mb-4">
+                    <div class="brand-icon mx-auto mb-3" style="width: 52px; height: 52px; font-size: 1.5rem;">
+                        <i class="bi bi-person-plus-fill"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark mb-1">Join Fitzen</h3>
+                    <p class="text-muted small">Start tracking your nutrition, fitness habits, and BMI today</p>
+                </div>
+
+                <form action="{{ url_for('register') }}" method="POST">
+                    <!-- Full Name Input -->
+                    <div class="mb-3">
+                        <label for="full_name" class="form-label">
+                            <i class="bi bi-person me-1 text-muted"></i> Full Name
+                        </label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="full_name" 
+                            name="full_name" 
+                            placeholder="e.g. Alex Johnson" 
+                            required 
+                            autofocus
+                        >
+                    </div>
+
+                    <!-- Email Input -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">
+                            <i class="bi bi-envelope me-1 text-muted"></i> Email Address
+                        </label>
+                        <input 
+                            type="email" 
+                            class="form-control" 
+                            id="email" 
+                            name="email" 
+                            placeholder="name@example.com" 
+                            required
+                        >
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">
+                            <i class="bi bi-shield-lock me-1 text-muted"></i> Password (min. 6 characters)
+                        </label>
+                        <input 
+                            type="password" 
+                            class="form-control" 
+                            id="password" 
+                            name="password" 
+                            placeholder="••••••••" 
+                            minlength="6"
+                            required
+                        >
+                    </div>
+
+                    <!-- Fitness Goal Selection -->
+                    <div class="mb-4">
+                        <label for="fitness_goal" class="form-label">
+                            <i class="bi bi-trophy me-1 text-muted"></i> Primary Fitness Goal
+                        </label>
+                        <select class="form-select" id="fitness_goal" name="fitness_goal" required>
+                            <option value="General Fitness" selected>General Fitness & Vitality</option>
+                            <option value="Weight Loss">Weight Loss & Lean Muscle</option>
+                            <option value="Muscle Gain">Muscle Hypertrophy & Strength</option>
+                            <option value="Endurance">Stamina & Cardiovascular Endurance</option>
+                            <option value="Flexibility">Flexibility & Core Mobility</option>
+                        </select>
+                        <div class="form-text small">Your goal helps us tailor nutrition and workout recommendations.</div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-fitzen w-100 py-2 fs-6 mb-3">
+                        <i class="bi bi-check2-circle me-2"></i> Register Account
+                    </button>
+                </form>
+
+                <div class="text-center pt-3 border-top">
+                    <p class="small text-muted mb-0">
+                        Already have an account? 
+                        <a href="{{ url_for('login') }}" class="text-success fw-bold text-decoration-none">
+                            Sign In here
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

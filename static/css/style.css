@@ -1,0 +1,418 @@
+/* ====================================================================
+   Fitzen – Personal Fitness and Wellness Tracker
+   Custom CSS Design System with Bootstrap 5 Overrides
+   ==================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --fitzen-primary: #10b981;
+    --fitzen-primary-dark: #059669;
+    --fitzen-primary-darker: #064e3b;
+    --fitzen-primary-light: #d1fae5;
+    
+    --fitzen-teal: #0d9488;
+    --fitzen-teal-light: #ccfbf1;
+    
+    --fitzen-accent: #06b6d4;
+    --fitzen-dark: #0f172a;
+    --fitzen-slate: #334155;
+    --fitzen-muted: #64748b;
+    --fitzen-light-bg: #f8fafc;
+    --fitzen-card-bg: #ffffff;
+    --fitzen-border: #e2e8f0;
+
+    --fitzen-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --fitzen-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --fitzen-shadow-lg: 0 10px 25px -5px rgba(16, 185, 129, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    --fitzen-shadow-hover: 0 20px 25px -5px rgba(16, 185, 129, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    
+    --fitzen-radius-sm: 8px;
+    --fitzen-radius: 14px;
+    --fitzen-radius-lg: 20px;
+}
+
+/* Global Typography & Background */
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--fitzen-light-bg);
+    color: var(--fitzen-slate);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* Navbar Custom Styling */
+.navbar-fitzen {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--fitzen-border);
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+    color: var(--fitzen-dark);
+}
+
+.navbar-brand span {
+    color: var(--fitzen-primary);
+}
+
+.navbar-brand .brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--fitzen-primary), var(--fitzen-teal));
+    color: white;
+    margin-right: 10px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--fitzen-slate);
+    padding: 0.5rem 0.9rem !important;
+    border-radius: var(--fitzen-radius-sm);
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--fitzen-primary-dark) !important;
+    background-color: var(--fitzen-primary-light);
+}
+
+/* Custom Buttons */
+.btn-fitzen {
+    background: linear-gradient(135deg, var(--fitzen-primary), var(--fitzen-primary-dark));
+    color: #ffffff;
+    border: none;
+    font-weight: 600;
+    padding: 0.6rem 1.4rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.btn-fitzen:hover {
+    background: linear-gradient(135deg, var(--fitzen-primary-dark), var(--fitzen-primary-darker));
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+}
+
+.btn-fitzen-outline {
+    background: transparent;
+    color: var(--fitzen-primary-dark);
+    border: 2px solid var(--fitzen-primary);
+    font-weight: 600;
+    padding: 0.55rem 1.3rem;
+    border-radius: 10px;
+    transition: all 0.25s ease;
+}
+
+.btn-fitzen-outline:hover {
+    background: var(--fitzen-primary);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+/* Card Styling */
+.card-fitzen {
+    background: var(--fitzen-card-bg);
+    border: 1px solid var(--fitzen-border);
+    border-radius: var(--fitzen-radius);
+    box-shadow: var(--fitzen-shadow-md);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+}
+
+.card-fitzen:hover {
+    box-shadow: var(--fitzen-shadow-lg);
+}
+
+.card-fitzen-interactive:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--fitzen-shadow-hover);
+}
+
+.card-header-fitzen {
+    background-color: transparent;
+    border-bottom: 1px solid var(--fitzen-border);
+    padding: 1.25rem 1.5rem;
+    font-weight: 700;
+    color: var(--fitzen-dark);
+}
+
+/* Metric / Stats Cards */
+.stat-card {
+    border-radius: var(--fitzen-radius);
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid var(--fitzen-border);
+    box-shadow: var(--fitzen-shadow-md);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.stat-card .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.stat-icon.primary {
+    background: var(--fitzen-primary-light);
+    color: var(--fitzen-primary-dark);
+}
+
+.stat-icon.teal {
+    background: var(--fitzen-teal-light);
+    color: var(--fitzen-teal);
+}
+
+.stat-icon.accent {
+    background: #e0f2fe;
+    color: #0284c7;
+}
+
+.stat-icon.warning {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.stat-value {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--fitzen-dark);
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--fitzen-muted);
+}
+
+/* Category Badges */
+.badge-bmi-underweight {
+    background-color: #e0f2fe;
+    color: #0284c7;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: 30px;
+}
+
+.badge-bmi-normal {
+    background-color: #d1fae5;
+    color: #065f46;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: 30px;
+}
+
+.badge-bmi-overweight {
+    background-color: #fef3c7;
+    color: #92400e;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: 30px;
+}
+
+.badge-bmi-obese {
+    background-color: #fee2e2;
+    color: #991b1b;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: 30px;
+}
+
+/* Form Styling */
+.form-control, .form-select {
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    border: 1px solid #cbd5e1;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--fitzen-primary);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+.form-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--fitzen-slate);
+    margin-bottom: 0.4rem;
+}
+
+/* Hero Section (Landing Page) */
+.hero-section {
+    padding: 5rem 0 4rem;
+    background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.12), transparent 45%),
+                radial-gradient(circle at bottom left, rgba(6, 182, 212, 0.08), transparent 40%);
+}
+
+.hero-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--fitzen-dark);
+    letter-spacing: -1px;
+}
+
+.hero-title span {
+    background: linear-gradient(135deg, var(--fitzen-primary-dark), var(--fitzen-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--fitzen-muted);
+    line-height: 1.6;
+}
+
+/* Feature Icon Boxes */
+.feature-box {
+    padding: 2rem;
+    border-radius: var(--fitzen-radius);
+    background: white;
+    border: 1px solid var(--fitzen-border);
+    transition: all 0.3s ease;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--fitzen-shadow-lg);
+    border-color: var(--fitzen-primary-light);
+}
+
+.feature-box .icon-wrap {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    background: var(--fitzen-primary-light);
+    color: var(--fitzen-primary-dark);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Modern Tables */
+.table-fitzen {
+    margin-bottom: 0;
+}
+
+.table-fitzen th {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    color: var(--fitzen-muted);
+    border-top: none;
+    border-bottom: 2px solid var(--fitzen-border);
+    padding: 0.9rem 1rem;
+}
+
+.table-fitzen td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--fitzen-border);
+    font-size: 0.925rem;
+}
+
+.table-fitzen tbody tr:hover {
+    background-color: rgba(248, 250, 252, 0.8);
+}
+
+/* Flash Alert Styling */
+.alert-fitzen {
+    border-radius: 12px;
+    border: none;
+    font-weight: 500;
+    padding: 1rem 1.25rem;
+    box-shadow: var(--fitzen-shadow-sm);
+    display: flex;
+    align-items: center;
+}
+
+/* Routine Cards for Workouts */
+.routine-card {
+    border-left: 4px solid var(--fitzen-primary);
+    border-radius: 10px;
+    background: #fdfdfd;
+    transition: all 0.2s ease;
+}
+
+.routine-card:hover {
+    background: #f8fafc;
+    border-left-color: var(--fitzen-teal);
+    transform: translateX(4px);
+}
+
+/* Goal Filter Tabs */
+.nav-pills-fitzen .nav-link {
+    border-radius: 30px;
+    padding: 0.6rem 1.4rem;
+    font-weight: 600;
+    color: var(--fitzen-slate);
+    background: white;
+    border: 1px solid var(--fitzen-border);
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.nav-pills-fitzen .nav-link.active {
+    background: var(--fitzen-primary);
+    color: white;
+    border-color: var(--fitzen-primary);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Footer */
+.footer-fitzen {
+    background: white;
+    border-top: 1px solid var(--fitzen-border);
+    padding: 2rem 0;
+    color: var(--fitzen-muted);
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.3rem;
+    }
+    .stat-value {
+        font-size: 1.5rem;
+    }
+}

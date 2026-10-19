@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block title %}Balanced Nutrition & Diet Guide – Fitzen{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+            <h2 class="fw-bold text-dark mb-1">
+                <i class="bi bi-egg-fried me-2 text-warning"></i> Balanced Diet & Nutrition Guide
+            </h2>
+            <p class="text-muted mb-0">
+                Nutrient-dense meal blueprints aligned with your primary fitness goal: 
+                <span class="badge bg-emerald-subtle text-success border border-success-subtle">{{ fitness_goal }}</span>
+            </p>
+        </div>
+        <div class="mt-3 mt-md-0">
+            <a href="{{ url_for('calorie_tracker') }}" class="btn btn-fitzen">
+                <i class="bi bi-plus-circle me-1"></i> Log Today's Meal
+            </a>
+        </div>
+    </div>
+
+    <!-- Core Dietary Principles Card -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="p-3 border rounded-3 bg-white shadow-sm h-100">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="stat-icon primary me-2" style="width: 38px; height: 38px; font-size: 1.1rem;">
+                        <i class="bi bi-shield-shaded"></i>
+                    </div>
+                    <h6 class="fw-bold mb-0">Protein Priority</h6>
+                </div>
+                <p class="small text-muted mb-0">Aim for 1.4 – 2.0g of protein per kg of body weight to support muscle preservation and satiety.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 border rounded-3 bg-white shadow-sm h-100">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="stat-icon teal me-2" style="width: 38px; height: 38px; font-size: 1.1rem;">
+                        <i class="bi bi-droplet-half"></i>
+                    </div>
+                    <h6 class="fw-bold mb-0">Hydration Baseline</h6>
+                </div>
+                <p class="small text-muted mb-0">Drink 2.5 to 3.5 liters of clean water daily. Proper hydration optimizes cellular energy and digestion.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 border rounded-3 bg-white shadow-sm h-100">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="stat-icon warning me-2" style="width: 38px; height: 38px; font-size: 1.1rem;">
+                        <i class="bi bi-flower1"></i>
+                    </div>
+                    <h6 class="fw-bold mb-0">Micronutrients & Fiber</h6>
+                </div>
+                <p class="small text-muted mb-0">Incorporate at least 25-35g of prebiotic fiber from leafy greens, berries, seeds, and legumes.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Goal Meal Plan Tabs -->
+    <div class="card card-fitzen p-4 mb-4">
+        <h5 class="fw-bold text-dark mb-3">Goal-Based Meal Architecture</h5>
+
+        <ul class="nav nav-pills nav-pills-fitzen mb-4" id="dietTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="loss-diet-tab" data-bs-toggle="pill" data-bs-target="#loss-diet" type="button" role="tab">
+                    Weight Loss & Fat Burn
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="gain-diet-tab" data-bs-toggle="pill" data-bs-target="#gain-diet" type="button" role="tab">
+                    Muscle Building & Hypertrophy
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="wellness-diet-tab" data-bs-toggle="pill" data-bs-target="#wellness-diet" type="button" role="tab">
+                    General Wellness & Longevity
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="dietTabsContent">
+            <!-- 1. Weight Loss Plan -->
+            <div class="tab-pane fade show active" id="loss-diet" role="tabpanel">
+                <div class="row g-4">
+                    <!-- Breakfast -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-fitzen p-3 h-100 border-top border-4 border-emerald">
+                            <span class="badge bg-light text-success fw-bold align-self-start mb-2">Breakfast</span>
+                            <h6 class="fw-bold text-dark mb-2">Egg White & Spinach Omelet</h6>
+                            <p class="small text-muted mb-3">3 egg whites, 1 whole egg, spinach, cherry tomatoes, and 1 slice of whole-grain sourdough.</p>
+                            <div class="mt-auto pt-2 border-top small text-muted d-flex justify-content-between">
+                                <span>~320 kcal</span>
+                                <span class="fw-semibold text-success">28g Protein</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Lunch -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-fitzen p-3 h-100 border-top border-4 border-emerald">
+                            <span class="badge bg-light text-success fw-bold align-self-start mb-2">Lunch</span>
+                            <h6 class="fw-bold text-dark mb-2">Grilled Chicken Quinoa Bowl</h6>
+                            <p class="small text-muted mb-3">Herb grilled chicken breast (150g), steamed broccoli, diced bell peppers, 1/2 cup cooked quinoa.</p>
+                            <div class="mt-auto pt-2 border-top small text-muted d-flex justify-content-between">
+                                <span>~440 kcal</span>
+                                <span class="fw-semibold text-success">40g Protein</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Dinner -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-fitzen p-3 h-100 border-top border-4 border-emerald">
+                            <span class="badge bg-light text-success fw-bold align-self-start mb-2">Dinner</span>
+                            <h6 class="fw-bold text-dark mb-2">Baked Salmon & Asparagus</h6>
+                            <p class="small text-muted mb-3">Wild Atlantic salmon fillet with lemon olive oil dressing, roasted asparagus, and mashed cauliflower.</p>
+                            <div class="mt-auto pt-2 border-top small text-muted d-flex justify-content-between">
+                                <span>~480 kcal</span>
+                                <span class="fw-semibold text-success">35g Protein</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Snacks -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-fitzen p-3 h-100 border-top border-4 border-emerald">
+                            <span class="badge bg-light text-success fw-bold align-self-start mb-2">Snacks</span>
+                            <h6 class="fw-bold text-dark mb-2">Greek Yogurt & Blueberries</h6>
+                            <p class="small text-muted mb-3">Unsweetened non-fat Greek yogurt with fresh blueberries and 10 raw crushed almonds.</p>
+                            <div class="mt-auto pt-2 border-top small text-muted d-flex justify-content-between">
+                                <span>~190 kcal</span>
+                                <span class="fw-semibold text-success">18g Protein</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Muscle Gain Plan -->
+            <div class="tab-pane fade" id="gain-diet" role="tabpanel">
+                <div class="row g-4">
+                    <!-- Breakfast -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-fitzen p-3 h-100 border-top border-4 border-primary">
+                            <span class="badge bg-light text-primary fw-bold align-self-start mb-2">Breakfast</span>
+                            <h6 class="fw-bold text-dark mb-2">Power Oats with Peanut Butter</h6>
+                            <p class="small text-muted mb-3">1 cup rolled oats cooked in milk, 1 scoop whey protein, 1 banana, and 2 tbsp peanut butter.</p>
+                            <div class="mt-auto pt-2 border-top small text-muted d-flex justify-content-between">
+                                <span>~580 kcal</span>
+                                <span class="fw-semibold text-primary">38g Protein</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Lunch -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-fitzen p-3 h-100 border-top border-4 border-primary">
+                            <span class="badge bg-light text-primary fw-bold align-self-start mb-2">Lunch</span>
+                            <h6 class="fw-bold text-dark mb-2">Steak & Sweet Potato Plate</h6>
+                            <p class="small text-muted mb-3">Lean sirloin steak (180g), 1 large baked sweet potato with olive oil, steamed green beans.</p>
+                            <div class="mt-auto pt-2 border-top small text-muted d-flex justify-content-between">
+                                <span>~650 kcal</span>
+                                <span class="fw-semibold text-primary">48g Protein</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Dinner -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-fitzen p-3 h-100 border-top border-4 border-primary">
+                            <span class="badge bg-light text-primary fw-bold align-self-start mb-2">Dinner</span>
+                            <h6 class="fw-bold text-dark mb-2">Chicken & Brown Rice Medley</h6>
+                            <p class="small text-muted mb-3">Tender chicken breast (200g), 1 cup brown basmati rice, avocado slices, and zucchini saute.</p>
+                            <div class="mt-auto pt-2 border-top small text-muted d-flex justify-content-between">
+                                <span>~620 kcal</span>
+                                <span class="fw-semibold text-primary">45g Protein</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Snacks -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-fitzen p-3 h-100 border-top border-4 border-primary">
+                            <span class="badge bg-light text-primary fw-bold align-self-start mb-2">Snacks</span>
+                            <h6 class="fw-bold text-dark mb-2">Protein Shake & Rice Cakes</h6>
+                            <p class="small text-muted mb-3">Whey protein shake mixed with milk, paired with 2 brown rice cakes topped with almond butter.</p>
+                            <div class="mt-auto pt-2 border-top small text-muted d-flex justify-content-between">
+                                <span>~340 kcal</span>
+                                <span class="fw-semibold text-primary">30g Protein</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. General Wellness Plan -->
+            <div class="tab-pane fade" id="wellness-diet" role="tabpanel">
+                <div class="row g-4">
+                    <!-- Breakfast -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-fitzen p-3 h-100 border-top border-4 border-teal">
+                            <span class="badge bg-light text-teal fw-bold align-self-start mb-2">Breakfast</span>
+                            <h6 class="fw-bold text-dark mb-2">Avocado Sourdough & Poached Egg</h6>
+                            <p class="small text-muted mb-3">Crushed avocado on toasted sourdough bread, 2 poached pasture-raised eggs, hemp seeds.</p>
+                            <div class="mt-auto pt-2 border-top small text-muted d-flex justify-content-between">
+                                <span>~410 kcal</span>
+                                <span class="fw-semibold text-teal">20g Protein</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Lunch -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-fitzen p-3 h-100 border-top border-4 border-teal">
+                            <span class="badge bg-light text-teal fw-bold align-self-start mb-2">Lunch</span>
+                            <h6 class="fw-bold text-dark mb-2">Mediterranean Chickpea Salad</h6>
+                            <p class="small text-muted mb-3">Chickpeas, cucumber, Kalamata olives, feta cheese, mixed greens, extra virgin olive oil vinaigrette.</p>
+                            <div class="mt-auto pt-2 border-top small text-muted d-flex justify-content-between">
+                                <span>~460 kcal</span>
+                                <span class="fw-semibold text-teal">18g Protein</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Dinner -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-fitzen p-3 h-100 border-top border-4 border-teal">
+                            <span class="badge bg-light text-teal fw-bold align-self-start mb-2">Dinner</span>
+                            <h6 class="fw-bold text-dark mb-2">Lentil Dahl & Roasted Veggies</h6>
+                            <p class="small text-muted mb-3">Turmeric golden lentil curry with steamed wild rice, baby spinach, and roasted carrots.</p>
+                            <div class="mt-auto pt-2 border-top small text-muted d-flex justify-content-between">
+                                <span>~490 kcal</span>
+                                <span class="fw-semibold text-teal">22g Protein</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Snacks -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-fitzen p-3 h-100 border-top border-4 border-teal">
+                            <span class="badge bg-light text-teal fw-bold align-self-start mb-2">Snacks</span>
+                            <h6 class="fw-bold text-dark mb-2">Apple Slices & Walnuts</h6>
+                            <p class="small text-muted mb-3">Crisp Honeycrisp apple slices with a handful of raw omega-3 rich California walnuts.</p>
+                            <div class="mt-auto pt-2 border-top small text-muted d-flex justify-content-between">
+                                <span>~220 kcal</span>
+                                <span class="fw-semibold text-teal">5g Protein</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

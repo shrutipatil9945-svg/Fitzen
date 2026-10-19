@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard – Fitzen{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Welcome Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 pb-2 border-bottom">
+        <div>
+            <h2 class="fw-bold text-dark mb-1">
+                Hello, {{ user.get('full_name', 'Athlete') }}! 👋
+            </h2>
+            <p class="text-muted mb-0">
+                Current Focus: <span class="badge bg-emerald-subtle text-success border border-success-subtle">{{ user.get('fitness_goal', 'General Fitness') }}</span>
+            </p>
+        </div>
+        <div class="mt-3 mt-md-0 d-flex gap-2">
+            <a href="{{ url_for('workouts') }}" class="btn btn-fitzen">
+                <i class="bi bi-plus-circle me-1"></i> Log Workout
+            </a>
+            <a href="{{ url_for('calorie_tracker') }}" class="btn btn-fitzen-outline">
+                <i class="bi bi-egg-fried me-1"></i> Add Meal
+            </a>
+        </div>
+    </div>
+
+    <!-- Metric Cards Row -->
+    <div class="row g-4 mb-4">
+        <!-- Metric 1: Latest BMI -->
+        <div class="col-md-4">
+            <div class="stat-card h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                        <div class="stat-label">Latest BMI</div>
+                        {% if latest_bmi %}
+                            <div class="stat-value mt-1">{{ latest_bmi.bmi_value }}</div>
+                        {% else %}
+                            <div class="stat-value mt-1 text-muted fs-4">--</div>
+                        {% endif %}
+                    </div>
+                    <div class="stat-icon teal">
+                        <i class="bi bi-calculator"></i>
+                    </div>
+                </div>
+                <div>
+                    {% if latest_bmi %}
+                        {% set cat = latest_bmi.category %}
+                        {% if cat == 'Underweight' %}
+                            <span class="badge badge-bmi-underweight">{{ cat }}</span>
+                        {% elif cat == 'Normal weight' %}
+                            <span class="badge badge-bmi-normal">{{ cat }}</span>
+                        {% elif cat == 'Overweight' %}
+                            <span class="badge badge-bmi-overweight">{{ cat }}</span>
+                        {% else %}
+                            <span class="badge badge-bmi-obese">{{ cat }}</span>
+                        {% endif %}
+                        <small class="text-muted ms-2">{{ latest_bmi.weight_kg }} kg / {{ latest_bmi.height_cm }} cm</small>
+                    {% else %}
+                        <a href="{{ url_for('bmi') }}" class="small text-success fw-bold text-decoration-none">
+                            Calculate your BMI now &rarr;
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Metric 2: Today's Calories -->
+        <div class="col-md-4">
+            <div class="stat-card h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                        <div class="stat-label">Today's Intake</div>
+                        <div class="stat-value mt-1">{{ today_calories }} <span class="fs-6 text-muted fw-normal">kcal</span></div>
+                    </div>
+                    <div class="stat-icon primary">
+                        <i class="bi bi-fire"></i>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="small text-muted">Daily Nutrition Total</span>
+                    <a href="{{ url_for('calorie_tracker') }}" class="small text-success fw-semibold text-decoration-none">
+                        Manage Meals &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metric 3: Recent Activity -->
+        <div class="col-md-4">
+            <div class="stat-card h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                        <div class="stat-label">Logged Workouts</div>
+                        <div class="stat-value mt-1">{{ recent_workouts|length }} <span class="fs-6 text-muted fw-normal">sessions</span></div>
+                    </div>
+                    <div class="stat-icon accent">
+                        <i class="bi bi-activity"></i>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="small text-muted">Recorded History</span>
+                    <a href="{{ url_for('workouts') }}" class="small text-primary fw-semibold text-decoration-none">
+                        View Workouts &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Action Navigation Tiles -->
+    <div class="row g-3 mb-5">
+        <div class="col-6 col-lg-3">
+            <a href="{{ url_for('bmi') }}" class="card card-fitzen card-fitzen-interactive p-3 text-decoration-none text-dark h-100 text-center">
+                <i class="bi bi-calculator fs-2 text-teal mb-2"></i>
+                <h6 class="fw-bold mb-1">BMI Calculator</h6>
+                <small class="text-muted">Screen body mass index</small>
+            </a>
+        </div>
+        <div class="col-6 col-lg-3">
+            <a href="{{ url_for('workouts') }}" class="card card-fitzen card-fitzen-interactive p-3 text-decoration-none text-dark h-100 text-center">
+                <i class="bi bi-fire fs-2 text-danger mb-2"></i>
+                <h6 class="fw-bold mb-1">Workouts</h6>
+                <small class="text-muted">Explore routines & log sets</small>
+            </a>
+        </div>
+        <div class="col-6 col-lg-3">
+            <a href="{{ url_for('diet') }}" class="card card-fitzen card-fitzen-interactive p-3 text-decoration-none text-dark h-100 text-center">
+                <i class="bi bi-egg-fried fs-2 text-warning mb-2"></i>
+                <h6 class="fw-bold mb-1">Nutrition Guide</h6>
+                <small class="text-muted">Balanced meal plans</small>
+            </a>
+        </div>
+        <div class="col-6 col-lg-3">
+            <a href="{{ url_for('progress') }}" class="card card-fitzen card-fitzen-interactive p-3 text-decoration-none text-dark h-100 text-center">
+                <i class="bi bi-graph-up fs-2 text-success mb-2"></i>
+                <h6 class="fw-bold mb-1">Analytics</h6>
+                <small class="text-muted">Charts & habit trends</small>
+            </a>
+        </div>
+    </div>
+
+    <!-- Recent Activity Table & Wellness Tip -->
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card card-fitzen h-100">
+                <div class="card-header card-header-fitzen d-flex justify-content-between align-items-center">
+                    <span class="fw-bold"><i class="bi bi-clock-history me-2 text-success"></i> Recent Workout Sessions</span>
+                    <a href="{{ url_for('workouts') }}" class="small text-decoration-none text-success fw-bold">View All</a>
+                </div>
+                <div class="card-body p-0">
+                    {% if recent_workouts %}
+                        <div class="table-responsive">
+                            <table class="table table-fitzen align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Activity Name</th>
+                                        <th>Category</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for w in recent_workouts %}
+                                        <tr>
+                                            <td class="text-muted small"><i class="bi bi-calendar3 me-1"></i> {{ w.date_logged }}</td>
+                                            <td class="fw-semibold text-dark">{{ w.workout_name }}</td>
+                                            <td><span class="badge bg-light text-dark border">{{ w.goal_category }}</span></td>
+                                            <td><span class="badge bg-emerald-subtle text-success fw-bold">{{ w.duration_mins }} mins</span></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5 text-muted">
+                            <i class="bi bi-clipboard2-pulse fs-1 opacity-50 mb-2"></i>
+                            <p class="mb-2">No workouts logged yet.</p>
+                            <a href="{{ url_for('workouts') }}" class="btn btn-sm btn-fitzen">Record Your First Workout</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Side Wellness Guidance -->
+        <div class="col-lg-4">
+            <div class="card card-fitzen p-4 h-100" style="background: linear-gradient(145deg, #ffffff, #f0fdf4);">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="stat-icon primary me-3">
+                        <i class="bi bi-lightbulb-fill"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-0 text-dark">Daily Wellness Tip</h6>
+                        <small class="text-muted">Consistency over Intensity</small>
+                    </div>
+                </div>
+                <p class="small text-muted mb-3">
+                    Small, daily efforts lead to lasting transformations. Strive to stay hydrated, drink at least 2.5 liters of water, and dedicate 30 minutes to movement each day.
+                </p>
+                <div class="border-top pt-3 mt-auto">
+                    <span class="small fw-semibold text-dark d-block mb-1">Recommended Next Step:</span>
+                    <a href="{{ url_for('calorie_tracker') }}" class="btn btn-sm btn-fitzen-outline w-100">
+                        Check Today's Calorie Balance
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

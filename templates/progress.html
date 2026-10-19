@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Progress Analytics & Visual Trends – Fitzen{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+            <h2 class="fw-bold text-dark mb-1">
+                <i class="bi bi-graph-up me-2 text-success"></i> Progress & Habit Analytics
+            </h2>
+            <p class="text-muted mb-0">
+                Visualize your fitness consistency, workout durations, and caloric intake trends over time.
+            </p>
+        </div>
+        <div class="mt-3 mt-md-0 d-flex gap-2">
+            <a href="{{ url_for('workouts') }}" class="btn btn-sm btn-fitzen">
+                <i class="bi bi-plus-circle me-1"></i> Log Activity
+            </a>
+            <a href="{{ url_for('calorie_tracker') }}" class="btn btn-sm btn-fitzen-outline">
+                <i class="bi bi-egg-fried me-1"></i> Track Food
+            </a>
+        </div>
+    </div>
+
+    <!-- Summary Metrics Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-6 col-md-3">
+            <div class="stat-card">
+                <div class="stat-label">Total Workouts</div>
+                <div class="stat-value text-dark mt-1">{{ workout_history|length }}</div>
+                <small class="text-muted">Recorded Sessions</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="stat-card">
+                <div class="stat-label">Workout Minutes</div>
+                {% set total_mins = workout_history|map(attribute='duration_mins')|sum %}
+                <div class="stat-value text-success mt-1">{{ total_mins }}</div>
+                <small class="text-muted">Total Active Time</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="stat-card">
+                <div class="stat-label">Meals Logged</div>
+                <div class="stat-value text-primary mt-1">{{ food_history|length }}</div>
+                <small class="text-muted">Nutritional Entries</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="stat-card">
+                <div class="stat-label">BMI Screenings</div>
+                <div class="stat-value text-teal mt-1">{{ bmi_history|length }}</div>
+                <small class="text-muted">Body Metric Logs</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Container embedding JSON Data for Chart.js -->
+    <div 
+        id="fitzen-charts-container"
+        data-calories='{{ food_history|tojson }}'
+        data-workouts='{{ workout_history|tojson }}'
+        data-bmi='{{ bmi_history|tojson }}'
+        style="display: none;"
+    ></div>
+
+    <!-- Chart Containers Row -->
+    <div class="row g-4 mb-4">
+        <!-- Chart 1: Daily Calorie Intake Trend -->
+        <div class="col-lg-6">
+            <div class="card card-fitzen h-100">
+                <div class="card-header card-header-fitzen d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-activity text-teal me-2"></i> Calorie Intake History</span>
+                    <span class="badge bg-light text-muted border">Daily kcal</span>
+                </div>
+                <div class="card-body p-4" style="min-height: 320px; position: relative;">
+                    <canvas id="calorieTrendChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart 2: Workout Duration Breakdown -->
+        <div class="col-lg-6">
+            <div class="card card-fitzen h-100">
+                <div class="card-header card-header-fitzen d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-bar-chart-fill text-success me-2"></i> Workout Duration</span>
+                    <span class="badge bg-light text-muted border">Minutes per Session</span>
+                </div>
+                <div class="card-body p-4" style="min-height: 320px; position: relative;">
+                    <canvas id="workoutBarChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart 3: BMI Trajectory Row -->
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="card card-fitzen">
+                <div class="card-header card-header-fitzen d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-clipboard2-data-fill text-primary me-2"></i> BMI Tracking Trend</span>
+                    <span class="badge bg-light text-muted border">WHO Body Mass Trajectory</span>
+                </div>
+                <div class="card-body p-4" style="min-height: 300px; position: relative;">
+                    <canvas id="bmiProgressChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
